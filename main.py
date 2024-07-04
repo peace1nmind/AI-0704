@@ -61,7 +61,9 @@ if st.session_state['login_status'] == 'ok':
     # 셀렉트 박스의 선택 결과
     your_opt = st.sidebar.selectbox('메뉴', selectbox_opt, index=0)
     st.sidebar.write('**선택 메뉴:**', your_opt)
-    st.subheader(your_opt)
+
+    if your_opt != '':
+        st.subheader(your_opt, divider='rainbow')
 
     if your_opt == '환율조회':
         er.ex_rate()
