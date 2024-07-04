@@ -24,6 +24,9 @@ import national_pension as np_func
 if 'login_status' not in st.session_state:
     st.session_state['login_status'] = ''
 
+if 'login_id' not in st.session_state:
+    st.session_state['login_id'] = ''
+
 # 로그인 상태 체크
 if st.session_state['login_status'] != 'ok':
     # 로그인 폼
@@ -35,14 +38,18 @@ if st.session_state['login_status'] != 'ok':
         if submitted:
             if (user_id == 'streamlit') & (user_pw == '1234'):
                 st.session_state['login_status'] = 'ok'
+                st.session_state['login_id'] = user_id
                 st.experimental_rerun()
             else:
                 st.sidebar.error("로그인 실패")
 else:
     # 로그아웃 버튼
     st.sidebar.header("로그아웃")
+    st.sidebar.write('**Login ID** : ', st.session_state['login_id'])
+    
     if st.sidebar.button("로그아웃"):
         st.session_state['login_status'] = ''
+        st.session_state['login_id'] = ''
         st.experimental_rerun()
 
 ### 로그인 후
