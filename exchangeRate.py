@@ -103,8 +103,28 @@ def ex_rate():
 
         ### 환율 데이터 표시
         st.subheader(c_name +" : "+ c_code_dic()[c_name])
-        st.dataframe(exchange_tbl)
+        today_er = exchange_tbl['매매기준율'][0]
+        yesterday_er = exchange_tbl['매매기준율'][1]
+        dif_er = round(today_er - yesterday_er, 1)
 
+        if dif_er > 0:
+            icon = "▲"  # 상향 삼각형 기호
+            dif_er_str = f'<span style="color:blue; font-size: smaller;">{icon}</span> `+ {dif_er}`'
+        else:
+            icon = "▼"  # 하향 삼각형 기호
+            dif_er_str = f'<span style="color:red; font-size: smaller;">{icon}</span> `{dif_er}`'
+
+        col1, col2, col3, col4 = st.columns(4)
+
+        with col1:
+            st.write('금일 매매기준율')
+            st.write('전일 매매기준율')
+            st.write('전일 대비 상승')
+
+        with col2:
+            st.write(f'`{today_er}`')
+            st.write(f'`{yesterday_er}`')
+            st.markdown(dif_er_str, unsafe_allow_html=True)
 
 
         ### 꺾은 선 그래프 그리기
