@@ -14,6 +14,7 @@
 
 import streamlit as st
 import national_pension as np_func
+import exchangeRate as er
 
 
 #####   streamlit.main
@@ -56,18 +57,20 @@ else:
 if st.session_state['login_status'] == 'ok':
 
     # 셀렉트 박스 선택 항목
-    selectbox_opt = ['', '탐색적 데이터분석', '머신러닝 예측']
+    selectbox_opt = ['', '환율조회','탐색적 데이터분석', '머신러닝 예측']
     # 셀렉트 박스의 선택 결과
     your_opt = st.sidebar.selectbox('메뉴', selectbox_opt, index=0)
     st.sidebar.write('**선택 메뉴:**', your_opt)
+    st.subheader(your_opt)
 
-    if your_opt == '탐색적 데이터분석':
-        st.subheader('탐색적 데이터분석')
+    if your_opt == '환율조회':
+        er.ex_rate()
+
+    elif your_opt == '탐색적 데이터분석':
         np_func.np_main()
 
     elif your_opt == '머신러닝 예측':
-        st.subheader('머신러닝 예측')
-
+        pass
     else:
         st.write('환영합니다')
     
