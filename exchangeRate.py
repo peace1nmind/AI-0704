@@ -148,9 +148,9 @@ def ex_rate():
 
 
         # 제목, 라벨 설정
-        graph.set_title('환율 (매매기준율)', fontsize="20")
-        graph.set_xlabel('기간')
-        graph.set_ylabel(f'원화/{c_code_dic()[c_name]}')
+        graph.set_title('Exchange Rate', fontsize="20")
+        graph.set_xlabel('Date')
+        graph.set_ylabel(f'KRW/{c_code_dic()[c_name]}')
         plt.xticks(fontsize=fontsize)
         plt.yticks(fontsize=fontsize)
         plt.subplots_adjust(bottom=0.8)
