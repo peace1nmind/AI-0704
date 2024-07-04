@@ -46,7 +46,7 @@ else:
     # 로그아웃 버튼
     st.sidebar.header("로그아웃")
     st.sidebar.write('**Login ID** : ', st.session_state['login_id'])
-    
+
     if st.sidebar.button("로그아웃"):
         st.session_state['login_status'] = ''
         st.session_state['login_id'] = ''
@@ -62,12 +62,11 @@ if st.session_state['login_status'] == 'ok':
     st.sidebar.write('**선택 메뉴:**', your_opt)
 
     if your_opt == '탐색적 데이터분석':
-        st.write('탐색적 데이터분석')
+        st.subheader('탐색적 데이터분석')
         np_func.np_main()
 
     elif your_opt == '머신러닝 예측':
-        st.sidebar.write(your_opt)
-        st.write('머신러닝 예측')
+        st.subheader('머신러닝 예측')
 
     else:
         st.write('환영합니다')
